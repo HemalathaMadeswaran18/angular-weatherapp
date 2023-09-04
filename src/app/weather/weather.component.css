@@ -1,0 +1,337 @@
+
+  
+  .wrapper {
+
+ 
+      font-family:'Avenir', 'Roboto','Arial', sans-serif;
+      box-sizing: border-box;
+      margin:10;
+      padding:0;
+
+      font-size: 16px;
+  }
+
+  
+  
+  #location {
+      margin-top:6vh;
+      grid-area:loc;
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: 100;
+    font-weight: lighter;
+      letter-spacing: 1px;
+      justify-self:center;
+      align-self: end;
+      margin-bottom: 0;	
+    line-height: 1em;
+  }
+  
+  #date {
+    margin-bottom: 3vh;
+      grid-area:date;
+      text-align: center;
+      font-size: .9em;
+      font-weight:100;
+      letter-spacing: 2px;
+      justify-self:center;
+      align-self: center;
+  }
+  
+  #temperature {
+      grid-area: temp;
+      font-weight: 200; 
+      font-size: 5em;
+      justify-self:center;
+      align-self: center;
+  }
+  
+  #icon-weather {
+      grid-area: icon-lg;
+      justify-self:center;
+      align-self: center;
+  }
+  
+  #description {
+      grid-area: desc;
+      font-size: 1.5em;
+      font-weight:200;
+      letter-spacing: 1.6px;
+      justify-self:center;
+      align-self: top;
+    margin-bottom: 3vh;
+  }
+  
+  /*"sub-grid" for names*/
+  .container-names {
+      grid-area: names;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+      "wind wind hum hum hi-lo-1 hi-lo-2" ;
+  }
+  
+  .names {
+      font-size: .9em;
+      font-weight: 100;
+    font-weight: lighter;
+    letter-spacing: 1.2px;
+      justify-self:center;
+      align-self: end;
+  }
+  
+  .names:nth-child(1) {
+      grid-area: wind;
+  }
+  
+  .names:nth-child(2){
+      grid-area: hum;
+  }
+  
+  .names:nth-child(3){
+      grid-area: hi-lo-1;
+  }
+  
+  .names:nth-child(4) {
+      grid-area: hi-lo-2;
+  }
+  
+  /*sub-grid icons*/
+  
+  
+  
+  .icons {
+      justify-self:center;
+      align-self: center;
+    height: 30px;
+  }
+  
+  .icons img {
+    height: 100%;
+  }
+  
+  .icons:nth-child(1) {
+      grid-area: icon-1;  
+  }
+  
+  .icons:nth-child(2) {
+      grid-area: icon-2;
+  }
+  
+  .icons:nth-child(3) {
+      grid-area: icon-3;
+  }
+  
+  .container-icons {
+      grid-area: icons-sm;
+      display:grid;
+      grid-template-columns:  repeat(6, 1fr);
+      grid-template-areas:
+      " icon-1 icon-1 icon-2 icon-2 icon-3 icon-3 ";	
+  }
+  
+  /*"sub-grid" names*/
+  .results {
+      font-size: .9em; 	
+    font-weight: 100;
+      justify-self:center;
+      align-self: center;
+  }
+  
+  .results:nth-child(1) {
+      grid-area: res-1;
+  }
+  
+  .results:nth-child(2) {
+      grid-area: res-2;
+  }
+  
+  .results:nth-child(3) {
+      grid-area: res-3;
+  }
+  
+  .results:nth-child(4) {
+      grid-area: res-4;
+  }
+  
+  .container-results {
+      grid-area: res;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+      "res-1 res-1 res-2 res-2 res-3 res-4";
+  }
+  
+  .unit {
+      grid-area: unit;
+      width:100px;
+      height:40px;
+      justify-self:flex-end;
+      align-self: center;
+      color: white;
+      margin-bottom: 5px;
+      margin-top: 10px;
+      position: relative;
+      
+  }
+  
+  
+  .unit:before {
+      content: "°F";
+      position: absolute;
+      left:15px ;
+      top:4px;
+      line-height: 40px;
+      color: rgba(255, 255, 255, .3);
+      z-index: -1;
+  }
+  
+  .unit:after{
+      content: "°C";
+      position: absolute;
+      right:15px ;
+      top:4px;
+      line-height: 40px;
+      color: rgba(255, 255, 255, .3);
+      z-index: -1;
+  }
+  
+  
+  .unit input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width:100%;
+      height: 100%;
+      display: block;
+      cursor: pointer;
+      opacity: 0;
+      z-index: 1;
+  
+  }
+  
+  .unit .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  border-radius:40px;
+      border:4px solid white;
+      box-shadow: 0px 3px 20px rgba(0,0,0,0.3);
+      box-sizing: content-box;
+      overflow: hidden;
+  }
+  
+  
+  .unit .slider .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: 0.5s; 
+  }
+  
+  .unit input:checked + .slider .slide {
+      transform: translateX(60px);
+  }
+  
+  
+  .unit .slide:after {
+      content: attr(data-attr);
+  
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 40px;
+      height: 100%;
+      background-color:#f21f1f;
+      line-height: 40px;	
+      border-radius:40px;
+      transition: ease-in 0.5s; 
+  }
+  
+  
+  
+  #cel-fah {
+      grid-area: cf;
+      font-size: .9em;
+      font-weight: 200;
+      letter-spacing: 1px;
+      justify-self:center;
+      align-self: start;
+  }
+  
+  /*mobile portrait / small screens */
+  
+  /* Rest of your CSS */
+
+/* Mobile portrait / small screens */
+.artboard {
+  background-image: linear-gradient(-225deg, rgba(55, 98, 145, 0.89) 0%, rgba(171, 191, 212, 0.60) 100%);
+  max-width: 100%;
+  max-height: 100%;
+  width: 300px; /* Adjust the width as needed */
+  height: 500px; /* Adjust the height as needed */
+  border-radius: 10px; /* Adjust the border radius as needed */
+  margin: 0 auto; /* Center horizontally */
+  color: #FFF;
+  box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 0.25fr repeat(6, 1fr) 0.25fr;
+  grid-template-rows: 0.25fr 1.5fr 0.5fr 2.25fr 0.75fr 0.95fr 0.75fr 2fr 0.75fr;
+  grid-template-areas:
+    ". loc loc loc loc loc loc ."
+    ". . date date date date . ."
+    ". . temp temp . icon-lg . ."
+    ". . desc desc desc desc . ."
+    ". names names names names names names ."
+    ". icons-sm icons-sm icons-sm icons-sm icons-sm icons-sm ."
+    ". res res res res res res ."
+    ". unit unit unit unit unit . ."
+    ". unit unit unit unit unit . .";
+}
+
+/* Rest of your CSS */
+
+  .artboard-night {
+      background-image: linear-gradient(-225deg, #0B213B 18%, rgba(16,15,71,0.50) 100%);
+  }
+  
+  /*mobile landscape  and large screens */
+  @media(min-width: 700px) {
+    .artboard {	
+      width: 736px;
+      height: 414px;
+      display:grid;
+      grid-template-columns: 0.25fr repeat(8, .5fr);
+      grid-template-rows: 1fr 1fr  .5fr .3fr 0.1fr .5fr; 
+      grid-template-areas: 
+      "loc loc loc loc loc loc date date date"
+      ". . temp temp icon-lg icon-lg desc desc desc"
+      ". names names names names names . . ."
+      ". icons-sm icons-sm icons-sm icons-sm icons-sm unit unit unit "
+      ". res res res res res cf cf cf " ;
+      }
+  
+        #description {
+        align-self: center;
+    }
+  
+    .unit {
+        justify-self:center;
+    }
+    
+    #date {
+      align-self:end ;
+     justify-self:center;
+    }
+    .icons {
+        height: 40px;
+      }  
+  }
+  
+  

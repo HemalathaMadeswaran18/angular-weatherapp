@@ -1,0 +1,49 @@
+
+<div class="bg-light text-black">
+
+<div class="text-center">
+  <!-- Form container -->
+  <h1>Whats the Weather Like?</h1>
+  <h5>Enter any City or Country in the world and lets find out!</h5>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <div class="mt-2">
+          <input type="text" [(ngModel)]="weather.location.country" placeholder="Enter country name">
+        </div>
+        <div class="mt-2">
+          <button class="btn btn-primary" (click)="UpdateCountry(weather)">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper" *ngIf="weather" style="margin-top: 2%;"> <!-- Add margin-top -->
+  <!-- Card container -->
+  <div id="day-nightBG" class="artboard">
+    <div id="location">{{weather.location.name}}</div>
+    <div id="date">{{weather.current.last_updated}}</div>
+    <div id="temperature">{{weather.current.temp_c}}°</div>
+    <img id="icon-weather" [src]="weather.current.condition.icon" height="125"/>
+
+    <!-- <img id="icon-weather" src="https://github.com/AsiaKo/WeatherApp/blob/master/img/icon/02d.png?raw=true" height="125"/> -->
+    <div id="description">{{weather.current.condition.text}}</div>
+
+    <div class="container-names">
+      <div class="names">wind</div>
+      <div class="names">humidity</div>
+    </div>
+
+    <div class="container-icons">
+      <div class="icons"><img src="https://github.com/AsiaKo/WeatherApp/blob/master/img/conditions/wind.png?raw=true"></div>
+      <div class="icons"><img src="https://github.com/AsiaKo/WeatherApp/blob/master/img/conditions/humidity.png?raw=true"></div>
+    </div>
+
+    <div class="container-results">
+      <div class="results" id="wind">{{weather.current.wind_kph}} <span id="direction">WS</span></div>
+      <div class="results" id="humidity">{{weather.current.humidity}}</div>
+    </div>
+  </div>
+</div>
+</div>
